@@ -1,4 +1,4 @@
-/*
+  /*
  * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +18,7 @@ package com.google.ar.core.examples.java.ml
 
 import android.opengl.GLSurfaceView
 import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -34,8 +35,9 @@ class MainActivityView(val activity: MainActivity, renderer: AppRenderer) : Defa
     SampleRender(this, renderer, activity.assets)
   }
   val useCloudMlSwitch = root.findViewById<SwitchCompat>(R.id.useCloudMlSwitch)
-  val scanButton = root.findViewById<AppCompatButton>(R.id.scanButton)
-  val resetButton = root.findViewById<AppCompatButton>(R.id.clearButton)
+  val rotateButton = root.findViewById<ImageButton>(R.id.rotateButton)
+  val scanButton = root.findViewById<ImageButton>(R.id.scanButton)
+  val resetButton = root.findViewById<ImageButton>(R.id.clearButton)
   val snackbarHelper = SnackbarHelper().apply {
     setParentView(root.findViewById(R.id.coordinatorLayout))
     setMaxLines(6)
@@ -57,11 +59,9 @@ class MainActivityView(val activity: MainActivity, renderer: AppRenderer) : Defa
   fun setScanningActive(active: Boolean) = when(active) {
     true -> {
       scanButton.isEnabled = false
-      scanButton.setText(activity.getString(R.string.scan_busy))
     }
     false -> {
       scanButton.isEnabled = true
-      scanButton.setText(activity.getString(R.string.scan_available))
     }
   }
 }

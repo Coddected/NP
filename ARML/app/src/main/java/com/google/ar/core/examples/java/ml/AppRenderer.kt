@@ -15,8 +15,14 @@
  */
 package com.google.ar.core.examples.java.ml
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.media.Image
 import android.opengl.Matrix
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.google.ar.core.Anchor
@@ -32,13 +38,23 @@ import com.google.ar.core.examples.java.ml.classification.MLKitObjectDetector
 import com.google.ar.core.examples.java.ml.classification.ObjectDetector
 import com.google.ar.core.examples.java.ml.render.LabelRender
 import com.google.ar.core.examples.java.ml.render.PointCloudRender
+import com.google.ar.core.examples.java.request.Result
+import com.google.ar.core.examples.java.request.ServiceBuilder
 import com.google.ar.core.exceptions.CameraNotAvailableException
 import com.google.ar.core.exceptions.NotYetAvailableException
-import java.util.Collections
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.nio.ByteBuffer
+import java.util.Collections
+
 
 /**
  * Renders the HelloAR application into using our example Renderer.
@@ -50,10 +66,14 @@ class AppRenderer(val activity: MainActivity) : DefaultLifecycleObserver, Sample
 
   lateinit var view: MainActivityView
 
+  val builder = AlertDialog.Builder(activity)
+
   val displayRotationHelper = DisplayRotationHelper(activity)
   lateinit var backgroundRenderer: BackgroundRenderer
   val pointCloudRender = PointCloudRender()
   val labelRenderer = LabelRender()
+
+  // 다이얼로그를 띄워주기
 
   val viewMatrix = FloatArray(16)
   val projectionMatrix = FloatArray(16)
@@ -64,6 +84,9 @@ class AppRenderer(val activity: MainActivity) : DefaultLifecycleObserver, Sample
 
   val mlKitAnalyzer = MLKitObjectDetector(activity)
   val gcpAnalyzer = GoogleCloudVisionDetector(activity)
+
+  var cameraImage: Image? = null
+  var cameraImageBack: Image? = null
 
   var currentAnalyzer: ObjectDetector = gcpAnalyzer
 
@@ -95,9 +118,9 @@ class AppRenderer(val activity: MainActivity) : DefaultLifecycleObserver, Sample
     view.useCloudMlSwitch.isEnabled = gcpConfigured
     currentAnalyzer = if (gcpConfigured) gcpAnalyzer else mlKitAnalyzer
 
-    if (!gcpConfigured) {
-      showSnackbar("Google Cloud Vision isn't configured (see README). The Cloud ML switch will be disabled.")
-    }
+//    if (!gcpConfigured) {
+//      showSnackbar("Google Cloud Vision isn't configured (see README). The Cloud ML switch will be disabled.")
+//    }
 
     view.resetButton.setOnClickListener {
       arLabeledAnchors.clear()
@@ -122,11 +145,78 @@ class AppRenderer(val activity: MainActivity) : DefaultLifecycleObserver, Sample
 
   override fun onDrawFrame(render: SampleRender) {
     val session = activity.arCoreSessionHelper.sessionCache ?: return
+
     session.setCameraTextureNames(intArrayOf(backgroundRenderer.cameraColorTexture.textureId))
 
     // Notify ARCore session that the view size changed so that the perspective matrix and
     // the video background can be properly adjusted.
     displayRotationHelper.updateSessionIfNeeded(session)
+
+    builder.setTitle("타이틀 입니다.")
+      .setMessage("메세지 내용 부분 입니다.")
+      .setPositiveButton("확인",
+        DialogInterface.OnClickListener { dialog, id ->
+
+          if (cameraImageBack == null) {
+            Toast.makeText(activity, "cameraImageBack 비었음", Toast.LENGTH_LONG).show()
+          }
+
+          if (cameraImage != null) {
+            Toast.makeText(activity, "cameraImage 비어있지 않음", Toast.LENGTH_LONG).show()
+          }
+
+
+
+          if (cameraImageBack != null) {
+
+            Toast.makeText(activity, "cameraImageBack 비어있지 않음", Toast.LENGTH_LONG).show()
+
+            val buffer: ByteBuffer = cameraImageBack!!.planes[0].buffer
+            val bytes = ByteArray(buffer.capacity())
+            buffer.get(bytes)
+
+
+            val bmp = Bitmap.createBitmap(cameraImageBack!!.width, cameraImageBack!!.height, Bitmap.Config.ARGB_8888)
+            val yuvToRgbConverter = YuvToRgbConverter(activity)
+
+            yuvToRgbConverter.yuvToRgb(cameraImageBack!!, bmp)
+
+            val stream = ByteArrayOutputStream()
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            val byteArray = stream.toByteArray()
+
+            val requestBody: RequestBody = RequestBody
+              .create(MediaType.parse("application/octet-stream"), byteArray)
+
+            val body = MultipartBody.Part.createFormData("image", "Test", requestBody)
+            val serviceBuilder = ServiceBuilder.myApi
+
+            serviceBuilder.uploadImage(body).enqueue(object : retrofit2.Callback<Result> {
+              override fun onResponse(call: Call<Result>, response: Response<Result>) {
+                val responseCode = response.code()
+                if (responseCode == 200) {
+                  Toast.makeText(activity, "Uploaded !", Toast.LENGTH_SHORT).show()
+                  cameraImage!!.close()
+                }
+              }
+
+              override fun onFailure(call: Call<Result>, t: Throwable) {
+                Toast.makeText(activity, "Failed due ${t.message}", Toast.LENGTH_SHORT)
+                  .show()
+                cameraImage!!.close()
+              }
+            })
+          }
+
+
+
+        })
+      .setNegativeButton("취소",
+        DialogInterface.OnClickListener { dialog, id ->
+
+        })
+
+
 
     val frame = try {
       session.update()
@@ -135,6 +225,10 @@ class AppRenderer(val activity: MainActivity) : DefaultLifecycleObserver, Sample
       showSnackbar("Camera not available. Try restarting the app.")
       return
     }
+
+
+
+
 
     backgroundRenderer.updateDisplayGeometry(frame)
     backgroundRenderer.drawBackground(render)
@@ -159,14 +253,16 @@ class AppRenderer(val activity: MainActivity) : DefaultLifecycleObserver, Sample
     // Check if the button was pressed last frame to start processing the camera image.
     if (scanButtonWasPressed) {
       scanButtonWasPressed = false
-      val cameraImage = frame.tryAcquireCameraImage()
+      cameraImage = frame.tryAcquireCameraImage()
+      cameraImageBack = cameraImage
       if (cameraImage != null) {
         // Call our ML model on an IO thread.
         launch(Dispatchers.IO) {
           val cameraId = session.cameraConfig.cameraId
           val imageRotation = displayRotationHelper.getCameraSensorToDisplayRotation(cameraId)
-          objectResults = currentAnalyzer.analyze(cameraImage, imageRotation)
-          cameraImage.close()
+          objectResults = currentAnalyzer.analyze(cameraImage!!, imageRotation)
+
+
         }
       }
     }
@@ -175,6 +271,7 @@ class AppRenderer(val activity: MainActivity) : DefaultLifecycleObserver, Sample
     val objects = objectResults
     if (objects != null) {
       objectResults = null
+
       Log.i(TAG, "$currentAnalyzer got objects: $objects")
       val anchors = objects.mapNotNull { obj ->
         val (atX, atY) = obj.centerCoordinate
@@ -183,21 +280,35 @@ class AppRenderer(val activity: MainActivity) : DefaultLifecycleObserver, Sample
         ARLabeledAnchor(anchor, obj.label)
       }
       arLabeledAnchors.addAll(anchors)
+
       view.post {
         view.resetButton.isEnabled = arLabeledAnchors.isNotEmpty()
         view.setScanningActive(false)
+
+        if (objects.isNotEmpty() && anchors.size == objects.size) {
+          cameraImageBack = cameraImage
+
+          if (cameraImage == null) {
+            Toast.makeText(activity, "cameraImage 비었음.", Toast.LENGTH_LONG).show()
+          }
+
+          builder.show()
+        }
+
         when {
           objects.isEmpty() && currentAnalyzer == mlKitAnalyzer && !mlKitAnalyzer.hasCustomModel() ->
             showSnackbar("Default ML Kit classification model returned no results. " +
-              "For better classification performance, see the README to configure a custom model.")
+                    "For better classification performance, see the README to configure a custom model.")
           objects.isEmpty() ->
             showSnackbar("Classification model returned no results.")
           anchors.size != objects.size ->
             showSnackbar("Objects were classified, but could not be attached to an anchor. " +
-              "Try moving your device around to obtain a better understanding of the environment.")
+                    "Try moving your device around to obtain a better understanding of the environment.")
         }
       }
     }
+
+
 
     // Draw labels at their anchor position.
     for (arDetectedObject in arLabeledAnchors) {
@@ -211,6 +322,14 @@ class AppRenderer(val activity: MainActivity) : DefaultLifecycleObserver, Sample
         arDetectedObject.label
       )
     }
+
+
+
+
+
+//    builder.show()
+
+
   }
 
   /**
