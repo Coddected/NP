@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/succulent"
+        android:width="96dp" android:height="96dp"
+        android:background="@android:color/transparent"/> <!-- 이미지 파일의 이름을 여기에 적어줍니다. -->
+    <!-- 이하 동그라미 모양을 정의하는 코드 (기존 동그라미 모양 코드는 삭제하거나 주석 처리해주세요.) -->
+
+</layer-list>

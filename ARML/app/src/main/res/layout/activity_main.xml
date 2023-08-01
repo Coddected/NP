@@ -14,37 +14,109 @@
  limitations under the License.
 -->
 
+
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-  <android.opengl.GLSurfaceView
-      android:id="@+id/surfaceview"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent" />
+  <LinearLayout
+      android:id="@+id/linearLayout7"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/surfaceview"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent" />
+
+  </LinearLayout>
 
   <LinearLayout
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
+      android:layout_height="58dp"
+      android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="52dp"
+        android:layout_height="58dp"
+        android:layout_gravity="left"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:scaleType="centerInside"
+        app:srcCompat="@mipmap/close" />
+  </LinearLayout>
+
+  <ImageView
+      android:id="@+id/imageView2"
+      android:layout_width="291dp"
+      android:layout_height="97dp"
+      android:layout_weight="1"
+      android:alpha="0.6"
+      app:layout_anchor="@+id/linearLayout"
+      app:layout_anchorGravity="center"
+      app:srcCompat="@drawable/background" />
+
+  <LinearLayout
+      android:id="@+id/linearLayout"
+      android:layout_width="250dp"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="80dp"
       android:layout_gravity="bottom|center_horizontal"
+      android:layout_marginBottom="80dp"
       app:layout_dodgeInsetEdges="bottom">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/scanButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="60dp"
-        android:text="@string/scan_available" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <ImageButton
         android:id="@+id/clearButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="60dp"
-        android:text="@string/clear" />
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:scaleType="centerInside"
+        android:src="@mipmap/remove" />
+
+    <LinearLayout
+        android:layout_width="22dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/scanButton"
+        android:layout_width="118dp"
+        android:layout_height="62dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:scaleType="centerInside"
+        app:srcCompat="@mipmap/scan2" />
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
+
+    <ImageButton
+        android:id="@+id/rotateButton"
+        android:layout_width="63dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:scaleType="centerInside"
+        app:srcCompat="@mipmap/sync" />
+
 
   </LinearLayout>
 
@@ -53,8 +125,10 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="top|end"
-      android:padding="16dp"
       android:background="#55FFFFFF"
-      android:text="@string/use_cloud_ml" />
+      android:padding="16dp"
+      android:text="@string/use_cloud_ml"
+      android:visibility="invisible" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

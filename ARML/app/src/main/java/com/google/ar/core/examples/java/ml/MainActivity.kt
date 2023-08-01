@@ -18,6 +18,7 @@ package com.google.ar.core.examples.java.ml
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.ar.core.CameraConfig
@@ -33,9 +34,8 @@ import com.google.ar.core.exceptions.UnavailableUserDeclinedInstallationExceptio
 
 
 class MainActivity : AppCompatActivity() {
-  val TAG = "MainActivity"
+  val TAG = "MainActivity" // Add this line to declare cameraConfig variable
   lateinit var arCoreSessionHelper: ARCoreSessionLifecycleHelper
-
   lateinit var renderer: AppRenderer
   lateinit var view: MainActivityView
 
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
       session.configure(
         session.config.apply {
           // To get the best image of the object in question, enable autofocus.
-          focusMode = Config.FocusMode.AUTO
+          focusMode = Config.FocusMode.FIXED
           if (session.isDepthModeSupported(Config.DepthMode.AUTOMATIC)) {
             depthMode = Config.DepthMode.AUTOMATIC
           }
@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity() {
     setContentView(view.root)
     renderer.bindView(view)
     lifecycle.addObserver(view)
+
   }
 
   override fun onRequestPermissionsResult(
@@ -100,3 +101,5 @@ class MainActivity : AppCompatActivity() {
     FullScreenHelper.setFullScreenOnWindowFocusChanged(this, hasFocus)
   }
 }
+
+

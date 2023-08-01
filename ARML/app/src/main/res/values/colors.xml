@@ -23,4 +23,11 @@
   <color name="teal_700">#FF018786</color>
   <color name="black">#FF000000</color>
   <color name="white">#FFFFFFFF</color>
+  <color name="colorAccent">#2FA91E</color>
+  <color name="start">#4B84F1</color>
+  <color name="gray">#d9d9d9</color>
+  <color name="login">#8aa9e3</color>
+  <color name="touchable">#739be6</color>
+  <color name="resis">#5b8ff0</color>
+  <color name="background">#deefde</color>
 </resources>

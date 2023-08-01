@@ -17,9 +17,12 @@
 package com.google.ar.core.examples.java.ml.classification
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.media.Image
 import com.google.ar.core.examples.java.ml.classification.utils.ImageUtils
 import com.google.ar.core.examples.java.ml.classification.utils.VertexUtils.rotateCoordinates
+import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
@@ -30,12 +33,12 @@ import kotlinx.coroutines.tasks.asDeferred
  * Analyzes an image using ML Kit.
  */
 class MLKitObjectDetector(context: Activity) : ObjectDetector(context) {
-  // To use a custom model, follow steps on https://developers.google.com/ml-kit/vision/object-detection/custom-models/android.
-//   val model = LocalModel.Builder().setAssetFilePath("inception_v4_1_metadata_1.tflite").build()
-//   val builder = CustomObjectDetectorOptions.Builder(model)
+//   To use a custom model, follow steps on https://developers.google.com/ml-kit/vision/object-detection/custom-models/android.
+   val model = LocalModel.Builder().setAssetFilePath("model.tflite").build()
+   val builder = CustomObjectDetectorOptions.Builder(model)
 
-  // For the ML Kit default model, use the following:
-  val builder = ObjectDetectorOptions.Builder()
+  // For the ML Ki3t default model, use the following:
+//  val builder = ObjectDetectorOptions.Builder()
 
   private val options = builder
     .setDetectorMode(CustomObjectDetectorOptions.SINGLE_IMAGE_MODE)
@@ -53,12 +56,15 @@ class MLKitObjectDetector(context: Activity) : ObjectDetector(context) {
 
     val inputImage = InputImage.fromBitmap(rotatedImage, 0)
 
+
     val mlKitDetectedObjects = detector.process(inputImage).asDeferred().await()
     return mlKitDetectedObjects.mapNotNull { obj ->
       val bestLabel = obj.labels.maxByOrNull { label -> label.confidence } ?: return@mapNotNull null
       val coords = obj.boundingBox.exactCenterX().toInt() to obj.boundingBox.exactCenterY().toInt()
       val rotatedCoordinates = coords.rotateCoordinates(rotatedImage.width, rotatedImage.height, imageRotation)
+
       DetectedObjectResult(bestLabel.confidence, bestLabel.text, rotatedCoordinates)
+
     }
   }
 

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:backgroundTint="@color/background">
+
+    <!-- 배경 이미지용 ImageView -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="147dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/Back"
+                android:layout_width="327dp"
+                android:layout_height="38dp"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@mipmap/left" />
+
+            <LinearLayout
+                android:layout_width="549dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+            <ImageButton
+                android:id="@+id/Interrogation"
+                android:layout_width="44dp"
+                android:layout_height="45dp"
+                android:layout_gravity="right"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@mipmap/interrogation" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="586dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="518dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="403dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="vertical"></LinearLayout>
+
+                <TextView
+                    android:id="@+id/greet"
+                    android:layout_width="163dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:fontFamily="@font/notosanskrblack"
+                    android:text="Username"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="26sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="vertical"></LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/addButton"
+                    android:layout_width="49dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="16dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/add" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/shelf"
+                android:layout_width="match_parent"
+                android:layout_height="141dp"
+                app:srcCompat="@mipmap/shelf" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/Hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="    Hello, "
+            android:textColor="#7C7C7C"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="vertical"></LinearLayout>
+
+            <TextView
+                android:id="@+id/myplant"
+                android:layout_width="338dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanskrbold"
+                android:text="       user의 화분"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:orientation="vertical"></LinearLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="360dp"
+            android:layout_height="121dp"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:id="@+id/containerLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            </LinearLayout> <!-- 여기서 orientation을 horizontal로 설정합니다. -->
+
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="378dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="138dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="92dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/Profile"
+                    android:layout_width="47dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@mipmap/user" />
+
+                <LinearLayout
+                    android:layout_width="117dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/ScanButton"
+                    android:layout_width="82dp"
+                    android:layout_height="84dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@mipmap/newscan" />
+
+                <LinearLayout
+                    android:layout_width="107dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"></LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/Plant"
+                    android:layout_width="105dp"
+                    android:layout_height="53dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@mipmap/leaf" />
+
+                <LinearLayout
+                    android:layout_width="82dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"></LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

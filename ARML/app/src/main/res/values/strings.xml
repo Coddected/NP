@@ -16,8 +16,11 @@
 
 <resources>
   <string name="app_name">ARCore MLKit</string>
-  <string name="scan_busy">Scanning…</string>
+  <string name="scan_busy">Scan</string>
   <string name="scan_available">Scan</string>
   <string name="clear">Clear</string>
   <string name="use_cloud_ml">Use Cloud ML</string>
+  <string name="Title">서버로 이미지를 전송하시겠습니까?</string>
+  <string name="accept">확인</string>
+  <string name="cancel">취소</string>
 </resources>
