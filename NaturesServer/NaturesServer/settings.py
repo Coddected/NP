@@ -79,8 +79,12 @@ WSGI_APPLICATION = "NaturesServer.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "NaturesPark",
+        "USER": "",
+        "PASSWORD": "",
+        "HOST": "",
+        "PORT": 3307,
     }
 }
 
@@ -134,3 +138,4 @@ IP_ADDRESS = "127.0.0.1"
 PORT = "8000"
 
 SERVER_ADDRESS = f"http://{IP_ADDRESS}:{PORT}"
+
