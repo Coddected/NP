@@ -2,5 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-class ReceiveImg(models.Model):
-    image = models.ImageField(upload_to="uploads/")
+class Plant(models.Model):
+    plant_name = models.CharField(max_length = 20)
+    plant_leaf_state = models.CharField(max_length = 20)

@@ -1,9 +1,11 @@
 from rest_framework import serializers
-from NaturesPark.models import ReceiveImg
+from NaturesPark.models import Plant
 
-class ReceiveImgSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(use_url=False)
+class ReceivePlantSerializer(serializers.ModelSerializer):
+    plant_name = serializers.CharField(max_length = 20)
+    plant_leaf_state = serializers.CharField(max_length = 20)
 
     class Meta:
-        model = ReceiveImg
-        fields = ('image', )
+        model = Plant
+        fields = ("plant_name", "plant_leaf_state")
+        
