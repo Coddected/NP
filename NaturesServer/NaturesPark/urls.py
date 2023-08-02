@@ -8,7 +8,9 @@ import NaturesPark.views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("images/", NaturesPark.views.index, name="images")
+    path("images/save", NaturesPark.views.img_save, name="images"),
+    path("images/classify", NaturesPark.views.img_classify, name="classify"),
+    path("plant/info", NaturesPark.views.plant_info, name="plant_info"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
