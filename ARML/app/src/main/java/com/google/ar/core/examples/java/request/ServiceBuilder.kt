@@ -4,6 +4,7 @@ import android.util.Log
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 abstract class ServiceBuilder {
     companion object {
@@ -26,7 +27,11 @@ abstract class ServiceBuilder {
                 val instance = Retrofit.Builder()
                     .baseUrl(url)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(OkHttpClient.Builder().build())
+                    .client(OkHttpClient.Builder()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .build())
                     .build()
                 INSTANCE = instance
                 return instance

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:alpha="0.9">
+
+    <ImageView
+        android:id="@+id/gifImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:scaleType="centerCrop"
+        android:src="@drawable/planthouse" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="235dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanskrbold"
+                android:text="       3/3" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:fontFamily="@font/notosanskrbold"
+                android:gravity="center"
+                android:text="어떤 종류의 조명을 사용하시나요?"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="171dp"
+                android:layout_height="179dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_rectangle1"
+                android:fontFamily="@font/notosanskrbold"
+                android:gravity="center"
+                android:text="햇빛"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="11dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="167dp"
+                android:layout_height="176dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_rectangle1"
+                android:fontFamily="@font/notosanskrbold"
+                android:gravity="center"
+                android:textSize="24sp"
+                tools:text="인공조명" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="171dp"
+                android:layout_height="179dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_rectangle1"
+                android:fontFamily="@font/notosanskrbold"
+                android:gravity="center"
+                android:text="LED식물조명"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="11dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="167dp"
+                android:layout_height="176dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_rectangle1"
+                android:fontFamily="@font/notosanskrbold"
+                android:gravity="center"
+                android:text="혼합(자연광&인공조명)"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:backgroundTint="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="147dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/Back"
+                android:layout_width="327dp"
+                android:layout_height="38dp"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@mipmap/left" />
+
+            <LinearLayout
+                android:layout_width="549dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+            <ImageButton
+                android:id="@+id/Interrogation"
+                android:layout_width="44dp"
+                android:layout_height="45dp"
+                android:layout_gravity="right"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@mipmap/interrogation" />
+
+            <LinearLayout
+                android:layout_width="277dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:orientation="vertical"></LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="658dp">
+
+            <LinearLayout
+                android:id="@+id/containerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- ScrollView -->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

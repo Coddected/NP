@@ -8,26 +8,43 @@
     <!-- 배경 이미지용 ImageView -->
 
     <ImageView
-        android:id="@+id/backgroundImage"
+        android:id="@+id/gifImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        app:srcCompat="@mipmap/background" />
+        android:scaleType="fitXY"
+        android:src="@drawable/dddd" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="578dp"
+        android:layout_height="661dp"
         android:gravity="center_horizontal|bottom"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <!-- 버튼 생성 -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="190dp"
+            android:layout_height="32dp"
+            android:text="NaturesPark"
+            android:textAlignment="center"
+            android:textColor="#3C3C3C"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="240dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="297dp"
+            android:orientation="vertical"></LinearLayout>
+
         <Button
             android:id="@+id/start_button"
             android:layout_width="266dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/start"
+            android:background="?attr/selectableItemBackground"
             android:focusable="true"
             android:fontFamily="@font/noto_sans_bold"
             android:onClick="onStartButtonClicked"
@@ -35,28 +52,14 @@
             android:paddingTop="15dp"
             android:paddingEnd="25dp"
             android:paddingBottom="15dp"
-            android:text="로그인하고 시작하기"
+            android:text="탭하여 시작하기"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="17sp"
             tools:layout_editor_absoluteX="72dp"
             tools:layout_editor_absoluteY="532dp" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="190dp"
-        android:layout_height="32dp"
-        android:text="NaturesPark"
-        android:textAlignment="center"
-        android:textColor="#3C3C3C"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_anchor="@+id/linearLayout"
-        app:layout_anchorGravity="center"
-        tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="240dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -88,11 +91,11 @@
 
     <ImageView
         android:id="@+id/logo2"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="143dp"
         app:layout_anchor="@+id/linearLayout3"
         app:layout_anchorGravity="bottom|center"
-        app:srcCompat="@mipmap/logo"
+        app:srcCompat="@drawable/icon2"
         tools:layout_editor_absoluteX="57dp"
         tools:layout_editor_absoluteY="131dp" />
 

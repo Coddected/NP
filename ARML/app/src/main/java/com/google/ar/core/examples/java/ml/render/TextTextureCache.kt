@@ -21,6 +21,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.opengl.GLES30
+import android.util.Log
 import com.google.ar.core.examples.java.common.samplerender.GLError
 import com.google.ar.core.examples.java.common.samplerender.SampleRender
 import com.google.ar.core.examples.java.common.samplerender.Texture

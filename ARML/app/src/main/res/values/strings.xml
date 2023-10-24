@@ -15,7 +15,7 @@
 -->
 
 <resources>
-  <string name="app_name">ARCore MLKit</string>
+  <string name="app_name">NaturesPark</string>
   <string name="scan_busy">Scan</string>
   <string name="scan_available">Scan</string>
   <string name="clear">Clear</string>

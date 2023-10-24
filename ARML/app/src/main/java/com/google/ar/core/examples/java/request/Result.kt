@@ -3,7 +3,7 @@ package com.google.ar.core.examples.java.request;
 
 data class Result(
     val message:String,
-    val data:List<DataItem>
+    val data:String
 )
 
 

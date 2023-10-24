@@ -20,6 +20,7 @@ import com.google.ar.core.Pose
 import com.google.ar.core.examples.java.common.samplerender.Mesh
 import com.google.ar.core.examples.java.common.samplerender.SampleRender
 import com.google.ar.core.examples.java.common.samplerender.Shader
+import com.google.ar.core.examples.java.common.samplerender.Texture
 import com.google.ar.core.examples.java.common.samplerender.VertexBuffer
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -106,16 +107,32 @@ class LabelRender {
     viewProjectionMatrix: FloatArray,
     pose: Pose,
     cameraPose: Pose,
-    label: String
+    label: String,
+    texture: Texture? = null,
+    textureExist: Boolean = true,
   ) {
     labelOrigin[0] = pose.tx()
     labelOrigin[1] = pose.ty()
     labelOrigin[2] = pose.tz()
-    shader
-      .setMat4("u_ViewProjection", viewProjectionMatrix)
-      .setVec3("u_LabelOrigin", labelOrigin)
-      .setVec3("u_CameraPos", cameraPose.translation)
-      .setTexture("uTexture", cache.get(render, label))
+
+    if (textureExist == true) {
+      shader
+        .setMat4("u_ViewProjection", viewProjectionMatrix)
+        .setVec3("u_LabelOrigin", labelOrigin)
+        .setVec3("u_CameraPos", cameraPose.translation)
+        .setTexture("uTexture", cache.get(render, label))
+    } else {
+      shader
+        .setMat4("u_ViewProjection", viewProjectionMatrix)
+        .setVec3("u_LabelOrigin", labelOrigin)
+        .setVec3("u_CameraPos", cameraPose.translation)
+        .setTexture("uTexture", texture!!)
+//      shader
+//        .setMat4("u_ViewProjection", viewProjectionMatrix)
+//        .setVec3("u_LabelOrigin", labelOrigin)
+//        .setVec3("u_CameraPos", cameraPose.translation)
+//        .setTexture("uTexture", cache.get(render, label))
+    }
     render.draw(mesh, shader)
   }
 }

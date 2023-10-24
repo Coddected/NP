@@ -35,7 +35,7 @@ class Login : AppCompatActivity() {
 
                 val validId = "test341"
                 val validEmail = "test@gmail.com"
-                val validPassword = "1"
+                val validPassword = "123456"
 
                 val buttonClick = findViewById<Button>(R.id.login)
                 buttonClick.setOnClickListener {

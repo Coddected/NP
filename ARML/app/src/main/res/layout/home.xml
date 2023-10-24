@@ -51,6 +51,12 @@
                 android:scaleType="centerInside"
                 app:srcCompat="@mipmap/interrogation" />
 
+            <LinearLayout
+                android:layout_width="277dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -63,12 +69,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="518dp"
+            android:layout_height="651dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="403dp"
+                android:layout_height="574dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -89,26 +95,43 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="130dp"
                     android:orientation="vertical"></LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/addButton"
-                    android:layout_width="49dp"
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="290dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </ScrollView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="16dp"
-                    android:background="@android:color/transparent"
-                    android:scaleType="centerInside"
-                    android:src="@mipmap/add" />
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <!--                <ImageButton-->
+                <!--                    android:id="@+id/addButton"-->
+                <!--                    android:layout_width="49dp"-->
+                <!--                    android:layout_height="50dp"-->
+                <!--                    android:layout_gravity="bottom|end"-->
+                <!--                    android:layout_margin="16dp"-->
+                <!--                    android:background="@android:color/transparent"-->
+                <!--                    android:scaleType="centerInside"-->
+                <!--                    android:src="@mipmap/add" />-->
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/shelf"
-                android:layout_width="match_parent"
-                android:layout_height="141dp"
-                app:srcCompat="@mipmap/shelf" />
+            <!--            <ImageView-->
+            <!--                android:id="@+id/shelf"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="141dp"-->
+            <!--                app:srcCompat="@mipmap/shelf" />-->
         </LinearLayout>
 
     </LinearLayout>
@@ -144,7 +167,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/myplant"
@@ -155,6 +180,7 @@
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
+
         </LinearLayout>
 
         <LinearLayout

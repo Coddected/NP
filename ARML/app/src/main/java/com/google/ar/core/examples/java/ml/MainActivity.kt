@@ -85,6 +85,8 @@ class MainActivity : AppCompatActivity() {
     renderer.bindView(view)
     lifecycle.addObserver(view)
 
+
+
   }
 
   override fun onRequestPermissionsResult(

@@ -51,6 +51,8 @@
     <activity android:name=".Resis"></activity>
     <activity android:name=".MainActivity"></activity>
     <activity android:name=".Home"></activity>
+    <activity android:name=".Plants"></activity>
+    <activity android:name=".Plant_info"></activity>
     <meta-data android:name="com.google.ar.core" android:value="required" />
   </application>
 
