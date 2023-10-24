@@ -46,18 +46,14 @@
                 android:fontFamily="@font/notosanskrbold"
                 android:gravity="center"
                 android:text="환경의 습도는 어떤가요?"
-                android:textSize="34sp" />
+                android:textSize="24sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:gravity="center"
             android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
 
             <Button
                 android:id="@+id/button8"
@@ -83,20 +79,16 @@
                 android:background="@drawable/rounded_rectangle1"
                 android:fontFamily="@font/notosanskrbold"
                 android:gravity="center"
-                android:textSize="24sp"
-                tools:text="보통" />
+                android:text="보통"
+                android:textSize="24sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:gravity="center"
             android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
 
             <Button
                 android:id="@+id/button5"

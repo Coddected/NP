@@ -53,6 +53,9 @@
     <activity android:name=".Home"></activity>
     <activity android:name=".Plants"></activity>
     <activity android:name=".Plant_info"></activity>
+    <activity android:name=".Select1"></activity>
+    <activity android:name=".Select2"></activity>
+    <activity android:name=".Select3"></activity>
     <meta-data android:name="com.google.ar.core" android:value="required" />
   </application>
 

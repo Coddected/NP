@@ -19,10 +19,8 @@ interface IApi {
     @POST("api/images/save")
     fun uploadImage(@Part image: MultipartBody.Part): Call<Result>
 
-    @POST("/api/data/place")
-    fun postDataToServer(@Body requestData: YourRequestModel): Call<Result>
-
-
+//    @POST("/api/data/place")
+//    fun postDataToServer(@Body requestData: YourRequestModel): Call<Result>
 
     @POST("/api/images/classify")
     fun classifyImage(@Body imageData: ImageData?): Call<Result>

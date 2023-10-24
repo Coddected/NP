@@ -1,5 +1,6 @@
 package com.google.ar.core.examples.java.ml
 
+
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
@@ -29,7 +30,7 @@ class NewActivity : AppCompatActivity() {
 
     val buttonClick = findViewById<Button>(R.id.start_button)
     buttonClick.setOnClickListener {
-      val intent = Intent(this, Home::class.java)
+      val intent = Intent(this, Select1::class.java)
       startActivity(intent)
     }
   }
